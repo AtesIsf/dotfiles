@@ -2,6 +2,8 @@
   "defaultProvider": "google",
   "defaultModel": "antigravity-gemini-3.8-flash",
   "externalEditor": "vim",
+  "enableInstallTelemetry": false,
+  "enableAnalytics": false,
   "packages": [
     "npm:@cortexkit/pi-antigravity-auth"
   ],
