@@ -18,33 +18,42 @@ interface EvaluationResult {
 
 /** Evaluate task complexity from prompt text and intent cues */
 function evaluatePromptComplexity(text: string): EvaluationResult {
-  const lower = text.toLowerCase().trim();
+  // If Pi expands a /skill:<name> command, it wraps the skill instructions in:
+  // <skill name="..." location="...">...</skill>\n\n<user message>
+  // Extract the active skill name and strip the injected skill body so that keyword matching
+  // and length metrics evaluate the user's actual prompt rather than the skill instructions.
+  const skillMatch = text.match(/<skill\s+name="([^"]+)"/i);
+  const activeSkill = skillMatch ? skillMatch[1].toLowerCase() : undefined;
+  const cleanedText = text.replace(/<skill\b[^>]*>[\s\S]*?<\/skill>/gi, "").trim();
+  const lower = cleanedText.toLowerCase();
 
   // 1. Skill Invocations
-  if (lower.startsWith("/skill:garv") || lower.includes("garv")) {
+  if (activeSkill === "garv" || lower.startsWith("/skill:garv") || lower.includes("garv")) {
     return { level: "high", reason: "garv bug hunting" };
   }
-  if (lower.startsWith("/skill:brainstorming") || lower.includes("brainstorming")) {
+  if (activeSkill === "brainstorming" || lower.startsWith("/skill:brainstorming") || lower.includes("brainstorming")) {
     return { level: "medium", reason: "brainstorming design" };
   }
-  if (lower.startsWith("/skill:ogur") || lower.includes("ogur")) {
+  if (activeSkill === "ogur" || lower.startsWith("/skill:ogur") || lower.includes("ogur")) {
     return { level: "low", reason: "ogur minimal dev" };
   }
-  if (lower.startsWith("/skill:delta-checker") || lower.includes("delta-checker")) {
+  if (activeSkill === "delta-checker" || lower.startsWith("/skill:delta-checker") || lower.includes("delta-checker")) {
     return { level: "low", reason: "delta-checker diff review" };
   }
 
-  // 2. Hardware / SID Disambiguation (Lookup vs Deep Debugging)
-  if (lower.includes("sid") || lower.includes("datasheet") || lower.includes("manual")) {
-    const isDebugging = /\b(trap|panic|page fault|fault|deadlock|race|hang|crash|barrier|fence|ordering|mmu|exception)\b/i.test(lower);
-    if (isDebugging) {
-      return { level: "high", reason: "sid trap/concurrency debugging" };
+  // 2. Hardware / SID Disambiguation (Lookup / Docs vs Deep Debugging)
+  const isSid = activeSkill === "sid" || /\bsid\b/i.test(lower);
+  if (isSid || /\b(datasheet|hardware manual|reference manual)\b/i.test(lower)) {
+    const hasDebugIntent = /\b(debug|diagnose|troubleshoot|investigate|fix|resolve|why does|why is|why am|why did|root cause|failing|broken|stuck|hung)\b/i.test(lower);
+    const hasHardwareFault = /\b(panics?|crashes?|hangs?|deadlocks?|races?|traps?|faults?|exceptions?|corruptions?|violations?|illegal instruction)\b/i.test(lower);
+
+    if (hasDebugIntent && hasHardwareFault) {
+      return { level: "high", reason: "sid hardware debugging" };
     }
-    const isLookup = /\b(offset|address|bitfield|layout|what is|where is|reset value|table|register|find|search)\b/i.test(lower);
-    if (isLookup) {
-      return { level: "low", reason: "sid datasheet lookup" };
+    if (hasDebugIntent) {
+      return { level: "medium", reason: "sid hardware troubleshooting" };
     }
-    return { level: "medium", reason: "sid hardware analysis" };
+    return { level: "low", reason: "sid spec / manual consultation" };
   }
 
   // 3. Critical Bugs / Concurrency / Kernel / Mathematical Proofs
