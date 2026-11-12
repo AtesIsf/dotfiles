@@ -29,7 +29,7 @@ function evaluatePromptComplexity(text: string): EvaluationResult {
 
   // 1. Skill Invocations
   if (activeSkill === "garv" || lower.startsWith("/skill:garv") || lower.includes("garv")) {
-    return { level: "high", reason: "garv bug hunting" };
+    return { level: "low", reason: "garv subagent orchestration" };
   }
   if (activeSkill === "brainstorming" || lower.startsWith("/skill:brainstorming") || lower.includes("brainstorming")) {
     return { level: "medium", reason: "brainstorming design" };
