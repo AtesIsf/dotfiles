@@ -1,0 +1,33 @@
+# Sensitive files and credentials
+*auth*.json
+*credential*
+*token*
+*.key
+*.pem
+*.pfx
+*.p12
+.env
+.env.*
+
+# Pi coding agent runtime & secrets
+**/auth*.json
+**/sessions/**
+**/models-store.json
+**/npm/**
+
+
+# Shell & editor runtime / history
+fish_variables
+.bash_history
+.python_history
+*.swp
+*.swo
+*~
+
+# Backups and logs
+.dotfiles_backup/
+*.log
+
+# OS & generic caches
+.DS_Store
+Thumbs.db

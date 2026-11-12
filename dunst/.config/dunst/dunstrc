@@ -1,0 +1,46 @@
+[global]
+    ### Font and General Appearance
+    # Lowered to size 14 as requested
+    font = Noto Sans Mono 16
+    frame_width = 4
+    corner_radius = 10
+    
+    ### Positioning and Geometry
+    # "origin" sets the anchor point (top-right is standard for Sway)
+    origin = top-right
+    # "offset" is (horizontal)x(vertical). 
+    # Reducing the second number moves it closer to the top edge.
+    offset = 20x6
+    
+    # "width" makes it wider. A range like (400, 600) ensures it doesn't look like a tiny box.
+    width = (400, 600)
+    
+    # To make it "shorter," we reduce the vertical padding and increase horizontal.
+    # padding = (vertical)
+    padding = 4
+    horizontal_padding = 15
+    
+    ### Disable Icons/Images
+    icon_position = left
+    max_icon_size = 32
+
+    ### Text Alignment
+    alignment = center
+
+[urgency_low]
+    background = "#2e3440"
+    foreground = "#d8dee9"
+    frame_color = "#4c566a"
+    timeout = 5
+
+[urgency_normal]
+    background = "#2e3440"
+    foreground = "#d8dee9"
+    frame_color = "#88c0d0"
+    timeout = 10
+
+[urgency_critical]
+    background = "#2e3440"
+    foreground = "#d8dee9"
+    frame_color = "#bf616a"
+    timeout = 0
