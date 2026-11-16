@@ -1,6 +1,6 @@
 {
-  "defaultProvider": "antigravity",
-  "defaultModel": "gemini-3.8-flash",
+  "defaultProvider": "google",
+  "defaultModel": "antigravity-gemini-3.8-flash",
   "externalEditor": "vim",
   "enableInstallTelemetry": false,
   "enableAnalytics": false,
