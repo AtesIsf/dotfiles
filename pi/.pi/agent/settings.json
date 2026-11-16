@@ -4,9 +4,8 @@
   "externalEditor": "vim",
   "enableInstallTelemetry": false,
   "enableAnalytics": false,
-  "packages": [],
-  "lastChangelogVersion": "1.5.2",
-  "extensionChangelogVersions": {
-    "{\"source\":\"npm:@qraxiss/pi-gemini-auth\",\"scope\":\"user\"}": "0.5.1"
-  }
+  "packages": [
+    "npm:@cortexkit/pi-antigravity-auth"
+  ],
+  "lastChangelogVersion": "1.5.2"
 }
