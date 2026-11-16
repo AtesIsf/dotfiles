@@ -1,11 +1,9 @@
 {
-  "defaultProvider": "google",
-  "defaultModel": "antigravity-gemini-3.8-flash",
+  "defaultProvider": "llama.cpp",
+  "defaultModel": "tiel-coder-35b",
   "externalEditor": "vim",
   "enableInstallTelemetry": false,
   "enableAnalytics": false,
-  "packages": [
-    "npm:@cortexkit/pi-antigravity-auth"
-  ],
+  "packages": [],
   "lastChangelogVersion": "1.5.2"
 }
