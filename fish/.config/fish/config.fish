@@ -8,15 +8,19 @@ end
 fish_vi_key_bindings
 
 function ls --wraps=eza
-    set -l args --color=always --icons=always --group-directories-first --git
-    for arg in $argv
-        switch $arg
-            case -R --recursive
-                set -a args --tree
-            case '*'
-                set -a args $arg
+    if command -q eza
+        set -l args --color=always --icons=always --group-directories-first --git
+        for arg in $argv
+            switch $arg
+                case -R --recursive
+                    set -a args --tree
+                case '*'
+                    set -a args $arg
+            end
         end
+        command eza $args
+    else
+        command ls --color=auto $argv
     end
-    command eza $args
 end
 alias grep='grep --color=auto'
