@@ -1,6 +1,6 @@
 configuration {
     show-icons: true;
-    font: "Noto Sans Mono 18";
+    font: "Noto Sans Mono 22";
 
     display-ssh:    "󰣀 ssh:";
     display-run:    "󱓞 run:";

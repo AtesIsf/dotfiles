@@ -8,8 +8,8 @@
 
 * {
     /* Added Symbols Nerd Font and Noto Color Emoji */
-    font-family: 'Symbols Nerd Font', 'CaskaydiaCove Nerd Font Mono', 'Font Awesome 6 Free', 'Noto Sans Mono', monospace;
-    font-size: 18px;
+    font-family: 'Symbols Nerd Font', 'Cascadia Code NF', 'Font Awesome 6 Free', monospace;
+    font-size: 22px;
     border: none;
     border-radius: 0;
     min-height: 0; /* Important for making workspace boxes thinner */

@@ -1,7 +1,7 @@
 [global]
     ### Font and General Appearance
     # Lowered to size 14 as requested
-    font = Noto Sans Mono 16
+    font = Noto Sans Mono 19
     frame_width = 4
     corner_radius = 10
     
