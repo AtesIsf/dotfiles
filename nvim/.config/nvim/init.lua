@@ -34,7 +34,7 @@ require("lazy").setup({
     },
     "nvim-tree/nvim-web-devicons",
     "nvim-lualine/lualine.nvim",
-    { "shaunsingh/nord.nvim", lazy = false, priority = 1000 },
+    { "rose-pine/neovim", name = "rose-pine", lazy = false, priority = 1000 },
 })
 
 local builtin = require('telescope.builtin')
@@ -60,10 +60,14 @@ vim.api.nvim_create_autocmd('FileType', {
     end,
 })
 
-vim.cmd("colorscheme nord")
+require("rose-pine").setup({
+    variant = "main",
+    dark_variant = "main",
+})
+vim.cmd("colorscheme rose-pine")
 
 require('lualine').setup({
-    options = { theme = 'nord' }
+    options = { theme = 'rose-pine' }
 })
 
 -- Your general Neovim settings
