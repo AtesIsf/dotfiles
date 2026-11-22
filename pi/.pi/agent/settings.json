@@ -7,5 +7,5 @@
   "packages": [
     "npm:@cortexkit/pi-antigravity-auth"
   ],
-  "lastChangelogVersion": "1.5.2"
+  "lastChangelogVersion": "1.6.0"
 }
