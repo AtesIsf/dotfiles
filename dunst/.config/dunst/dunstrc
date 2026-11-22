@@ -28,19 +28,19 @@
     alignment = center
 
 [urgency_low]
-    background = "#2e3440"
-    foreground = "#d8dee9"
-    frame_color = "#4c566a"
+    background = "#191724"
+    foreground = "#e0def4"
+    frame_color = "#31748f"
     timeout = 5
 
 [urgency_normal]
-    background = "#2e3440"
-    foreground = "#d8dee9"
-    frame_color = "#88c0d0"
+    background = "#191724"
+    foreground = "#e0def4"
+    frame_color = "#c4a7e7"
     timeout = 10
 
 [urgency_critical]
-    background = "#2e3440"
-    foreground = "#d8dee9"
-    frame_color = "#bf616a"
+    background = "#191724"
+    foreground = "#e0def4"
+    frame_color = "#eb6f92"
     timeout = 0
