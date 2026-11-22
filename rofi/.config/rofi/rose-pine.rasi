@@ -1,19 +1,21 @@
 /**
- * Nord Rofi Theme
+ * Rosé Pine Main Rofi Theme
  */
 
 * {
-    base: #2e3440;
-    surface0: #3b4252;
-    overlay0: #434c5e;
-    text: #d8dee9;
+    base: #191724;
+    surface0: #1f1d2e;
+    overlay0: #26233a;
+    muted: #6e6a86;
+    subtle: #908caa;
+    text: #e0def4;
 
-    blue: #88c0d0;
-    glacier: #81a1c1;
-    red: #bf616a;
-    orange: #d08770;
-    green: #a3be8c;
-    purple: #b48ead;
+    love: #eb6f92;
+    gold: #f6c177;
+    rose: #ebbcba;
+    pine: #31748f;
+    foam: #9ccfd8;
+    iris: #c4a7e7;
 
     background-color: @base;
 }
@@ -24,7 +26,7 @@ window {
 
     border: 3;
     border-radius: 10;
-    border-color: @blue;
+    border-color: @iris;
 }
 
 mainbox {
@@ -67,6 +69,7 @@ entry, prompt, case-indicator {
 
 prompt {
     margin: 0 10 0 0;
+    text-color: @iris;
 }
 
 element {
@@ -85,19 +88,19 @@ element.alternate.normal {
 }
 
 element.normal.active, element.alternate.active {
-    background-color: @orange;
+    background-color: @pine;
 }
 
 element.selected.active {
-    background-color: @blue;
+    background-color: @iris;
 }
 
 element.normal.urgent, element.alternate.urgent {
-    background-color: @red;
+    background-color: @love;
 }
 
 element.selected.urgent {
-    background-color: @purple;
+    background-color: @love;
 }
 
 element-text, element-icon {

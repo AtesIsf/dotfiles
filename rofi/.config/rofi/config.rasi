@@ -10,4 +10,4 @@ configuration {
     display-filebrowser: "󰉋 filebrowser:";
 }
 
-@theme "~/.config/rofi/nord.rasi"
+@theme "~/.config/rofi/rose-pine.rasi"
