@@ -218,23 +218,29 @@ bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
 
 # Screenshots
 bindsym Print exec grim -o eDP-1 ~/Pictures/Screenshots/$(date +%Y-%m-%d:%H-%M-%S).png && notify-send "Fullscreen Screenshot Captured"
-bindsym $mod+Shift+s exec grim -g "$(slurp -b 2e344099 -c 88c0d0)" ~/Pictures/Screenshots/$(date +%Y-%m-%d:%H-%M-%S).png && notify-send "Screenshot Captured"
+bindsym $mod+Shift+s exec grim -g "$(slurp -b 19172499 -c c4a7e7)" ~/Pictures/Screenshots/$(date +%Y-%m-%d:%H-%M-%S).png && notify-send "Screenshot Captured"
 
 # Colors
-# --- Nord Palette Colors ---
-set $base       #2e3440
-set $text       #d8dee9
-set $accent     #88c0d0
-set $surface1   #3b4252
-set $surface2   #434c5e
-set $red        #bf616a
+# --- Rosé Pine Main Palette Colors ---
+set $base       #191724
+set $surface    #1f1d2e
+set $overlay    #26233a
+set $muted      #6e6a86
+set $subtle     #908caa
+set $text       #e0def4
+set $love       #eb6f92
+set $gold       #f6c177
+set $rose       #ebbcba
+set $pine       #31748f
+set $foam       #9ccfd8
+set $iris       #c4a7e7
 
 # --- Window Colors ---
 # Class                  border    backgr.   text      indicator child_border
-client.focused           $accent   $base     $text     $accent   $accent
-client.focused_inactive  $surface2 $base     $text     $surface2 $surface2
-client.unfocused         $surface1 $base     $text     $surface1 $surface1
-client.urgent            $red      $base     $text     $red      $red
+client.focused           $iris     $base     $text     $iris     $iris
+client.focused_inactive  $overlay  $base     $text     $overlay  $overlay
+client.unfocused         $surface  $base     $text     $surface  $surface
+client.urgent            $love     $base     $text     $love     $love
 
 bar {
     swaybar_command waybar
