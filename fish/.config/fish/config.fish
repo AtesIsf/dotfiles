@@ -6,6 +6,7 @@ function fish_greeting
 end
 
 fish_vi_key_bindings
+fish_add_path ~/.local/bin
 fish_add_path ~/.pi/agent/bin
 
 function ls --wraps=eza

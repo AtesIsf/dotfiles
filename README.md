@@ -16,7 +16,7 @@ Configurations are organized into independent modular packages targeting `$HOME`
 | `swaylock` | `~/.config/swaylock` | Swaylock configuration |
 | `rofi` | `~/.config/rofi` | Rofi launcher configuration |
 | `dunst` | `~/.config/dunst` | Dunst notification daemon |
-| `gtk` | `~/.config/gtk-{3,4}.0` | GTK 3 & GTK 4 dark Nordic theme settings |
+| `gtk` | `~/.config/gtk-{3,4}.0` | GTK 3 & GTK 4 dark Rosé Pine theme settings |
 | `scripts` | `~/Scripts` | User utility scripts (wallpaper randomizer) |
 | `pi` | `~/.pi/agent` | Pi agent settings, prompts, extensions, and skills |
 
