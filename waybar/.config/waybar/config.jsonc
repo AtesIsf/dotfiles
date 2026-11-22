@@ -14,7 +14,9 @@
     "modules-right": [
         "power-profiles-daemon",
         "backlight",
-        "pulseaudio",
+        "wireplumber",
+        "bluetooth",
+        "network",
         "battery",
         "tray"
     ],
@@ -31,8 +33,8 @@
     },
     
     "tray": {
-        "icon-size": 32,
-        "spacing": 10
+        "icon-size": 18,
+        "spacing": 8
     },
     
     "clock": {
@@ -42,10 +44,7 @@
     },
     
     "backlight": {
-        "format": "{percent}% {icon}",
-        "format-icons": ["🌑", "🌘", "🌗", "🌖", "🌕"],
-        "min-length": 7,  // Fits "100% 🌕 "
-        "align": 0.5      // Keeps the text centered within its reserved space
+        "format": "{percent:3}% 󰃠"
     },
     
     "battery": {
@@ -60,6 +59,17 @@
         "format-icons": ["", "", "", "", ""]
     },
     
+    "network": {
+        "format-wifi": "",
+        "format-ethernet": "󰈀",
+        "format-linked": "󰈀",
+        "format-disconnected": "󰤮",
+        "tooltip-format-wifi": "SSID: {essid}\nSignal: {signalStrength}%\nIP: {ipaddr}",
+        "tooltip-format-ethernet": "Interface: {ifname}\nIP: {ipaddr}",
+        "tooltip-format-disconnected": "Disconnected",
+        "on-click": "foot --app-id=floating -e nmtui"
+    },
+
     "power-profiles-daemon": {
       "format": "{icon}",
       "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
@@ -72,24 +82,24 @@
       }
     },
     
-    "pulseaudio": {
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-	"format-bluetooth-muted": "󰝟 {icon} {format_source}",
-	"format-muted": "󰝟 {format_source}",
-	"format-source-muted": "󰍭",
-        "format-source": "{volume}% ",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
+    "bluetooth": {
+        "format": "",
+        "format-disabled": "",
+        "format-off": "󰂲",
+        "format-on": "󰂯",
+        "format-connected": "󰂱",
+        "tooltip-format": "{controller_alias}\t{status}",
+        "tooltip-format-connected": "{controller_alias} ({num_connections} connected)\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "on-click": "foot --app-id=floating -e bluetui"
+    },
+    
+    "wireplumber": {
+        "format": "{volume:3}% 󰕾",
+        "format-muted": "{volume:3}% 󰝟",
         "on-click": "pavucontrol",
-        "min-length": 14, // Fits max string like "100%   100% "
-        "align": 0.5
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "scroll-step": 5
     }
 }
+

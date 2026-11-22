@@ -8,8 +8,8 @@
 
 * {
     /* Added Symbols Nerd Font and Noto Color Emoji */
-    font-family: 'Noto Sans Mono', 'Symbols Nerd Font', 'Font Awesome 6 Free', 'Font Awesome 6 Brands', 'Noto Color Emoji', monospace;
-    font-size: 24px;
+    font-family: 'Symbols Nerd Font', 'CaskaydiaCove Nerd Font Mono', 'Font Awesome 6 Free', 'Noto Sans Mono', monospace;
+    font-size: 18px;
     border: none;
     border-radius: 0;
     min-height: 0; /* Important for making workspace boxes thinner */
@@ -26,12 +26,16 @@ window#waybar {
 #battery,
 #backlight,
 #pulseaudio,
+#wireplumber,
+#bluetooth,
+#network,
 #tray,
 #mode,
 #power-profiles-daemon {
     background: transparent;
     color: @text;
-    padding: 0 14px;
+    padding: 0 10px;
+    margin: 0;
 }
 
 #workspaces {
