@@ -1,10 +1,16 @@
-/* --- Nord Palette --- */
-@define-color base      #2e3440;
-@define-color text      #d8dee9;
-@define-color lavender  #81a1c1;
-@define-color mauve     #88c0d0;
-@define-color red       #bf616a;
-@define-color surface1  #3b4252;
+/* --- Rosé Pine Main Palette --- */
+@define-color base      #191724;
+@define-color surface   #1f1d2e;
+@define-color overlay   #26233a;
+@define-color muted     #6e6a86;
+@define-color subtle    #908caa;
+@define-color text      #e0def4;
+@define-color love      #eb6f92;
+@define-color gold      #f6c177;
+@define-color rose      #ebbcba;
+@define-color pine      #31748f;
+@define-color foam      #9ccfd8;
+@define-color iris      #c4a7e7;
 
 * {
     /* Added Symbols Nerd Font and Noto Color Emoji */
@@ -53,22 +59,22 @@ window#waybar {
 }
 
 #workspaces button:hover {
-    background: @surface1;
+    background: @overlay;
 }
 
 #workspaces button.focused, #workspaces button.active {
-    background-color: @lavender;
-    color: @base; /* Dark text on bright lavender for readability */
+    background-color: @iris;
+    color: @base; /* Dark text on bright iris for readability */
 }
 
 #workspaces button.urgent {
-    background-color: @red;
+    background-color: @love;
     color: @base;
 }
 
 /* Mode indicator (e.g., resize mode) */
 #mode {
-    background-color: @surface1;
+    background-color: @overlay;
     margin: 4px 2px;
     padding: 0 10px;
     border-radius: 4px;
@@ -81,12 +87,12 @@ window#waybar {
 
 @keyframes blink {
     to {
-        color: @red;
+        color: @love;
     }
 }
 
 #battery.critical:not(.charging) {
-    color: @red;
+    color: @love;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: steps(12);
@@ -94,6 +100,7 @@ window#waybar {
     animation-direction: alternate;
 }
 
-#pulseaudio.muted {
-    color: @surface1;
+#pulseaudio.muted,
+#wireplumber.muted {
+    color: @muted;
 }
