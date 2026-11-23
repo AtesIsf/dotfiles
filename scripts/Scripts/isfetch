@@ -1,0 +1,90 @@
+#!/bin/sh
+#
+# isfetch - tiny system info for gentoo
+#
+# Based on ufetch by Joshua Pan (https://gitlab.com/jschx/ufetch)
+# Licensed under the MIT License.
+
+## DEFINE COLORS
+
+ESC="$(printf '\033')"
+bold="${ESC}[1m"
+red="${ESC}[31m"
+green="${ESC}[32m"
+yellow="${ESC}[33m"
+magenta="${ESC}[35m"
+reset="${ESC}[0m"
+
+lc="${reset}${bold}${magenta}"      # labels
+nc="${reset}${bold}${magenta}"      # user and hostname
+ic="${reset}"                       # info
+c0="${reset}${bold}${magenta}"      # first color
+c1="${reset}${magenta}"             # second color
+
+## INFO
+
+user="${USER:-$(id -un)}"
+read -r host < /proc/sys/kernel/hostname
+os='Gentoo Linux'
+read -r _os < /proc/sys/kernel/ostype
+read -r _rel < /proc/sys/kernel/osrelease
+kernel="${_os} ${_rel}"
+uptime="$(uptime -p 2>/dev/null | sed 's/up //')"
+
+# Packages (differentiate portage and flatpak)
+set -- /var/db/pkg/*/*
+portage_pkgs=$#
+[ -e "$1" ] || portage_pkgs=0
+flatpak_pkgs=0
+if command -v flatpak >/dev/null 2>&1; then
+	flatpak_pkgs="$(flatpak list 2>/dev/null | wc -l)"
+fi
+
+if [ "${flatpak_pkgs}" -gt 0 ]; then
+	packages="${portage_pkgs} (portage), ${flatpak_pkgs} (flatpak)"
+else
+	packages="${portage_pkgs} (portage)"
+fi
+
+# Color percentage helper (fastfetch thresholds: <50% green, <80% yellow, >=80% red)
+color_pct() {
+	_p="${1:-0}"
+	if [ "${_p}" -lt 50 ]; then
+		_c="${green}"
+	elif [ "${_p}" -lt 80 ]; then
+		_c="${yellow}"
+	else
+		_c="${red}"
+	fi
+	printf "(%s%s%%%s)" "${_c}" "${_p}" "${ic}"
+}
+
+# Memory (used / total in GiB + colored percentage)
+mem_data=$(awk '/MemTotal:/ {total=$2} /MemAvailable:/ {avail=$2} END {
+	used = total - avail
+	pct = int(used * 100 / total)
+	printf "%.1f GiB / %.1f GiB %d", used/1048576, total/1048576, pct
+}' /proc/meminfo 2>/dev/null)
+mem="${mem_data% *} $(color_pct "${mem_data##* }")"
+
+# Disk (used / total in GiB + colored percentage)
+disk_data=$(df -m / 2>/dev/null | awk 'NR==2 {
+	pct = $5
+	sub(/%/, "", pct)
+	printf "%.1f GiB / %.1f GiB %d", $3/1024, $2/1024, pct
+}')
+disk="${disk_data% *} $(color_pct "${disk_data##* }")"
+
+## OUTPUT
+
+cat <<EOF
+
+${c0}    .-----.      ${nc}${user}${ic}@${nc}${host}${reset}
+${c0}  .\`    _  \`.    ${lc}OS:        ${ic}${os}${reset}
+${c0}  \`.   (${c1}_)   ${c0}\`.  ${lc}KERNEL:    ${ic}${kernel}${reset}
+${c0}    \`${c1}.        /  ${lc}UPTIME:    ${ic}${uptime}${reset}
+${c1}   .\`       .\`   ${lc}PACKAGES:  ${ic}${packages}${reset}
+${c1}  /       .\`     ${lc}MEMORY:    ${ic}${mem}${reset}
+${c1}  \____.-\`       ${lc}DISK:      ${ic}${disk}${reset}
+
+EOF
