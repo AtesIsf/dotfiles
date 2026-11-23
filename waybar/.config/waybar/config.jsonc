@@ -12,13 +12,13 @@
         "clock"
     ],
     "modules-right": [
+        "tray",
         "power-profiles-daemon",
         "backlight",
         "wireplumber",
         "bluetooth",
         "network",
-        "battery",
-        "tray"
+        "battery"
     ],
 
     "sway/workspaces": {
@@ -33,7 +33,7 @@
     },
     
     "tray": {
-        "icon-size": 18,
+        "icon-size": 24,
         "spacing": 8
     },
     

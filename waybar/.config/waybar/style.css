@@ -104,3 +104,15 @@ window#waybar {
 #wireplumber.muted {
     color: @muted;
 }
+
+#tray {
+    border-right: 1px solid @overlay;
+    margin-right: 6px;
+    padding-right: 10px;
+}
+
+#tray.empty {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
