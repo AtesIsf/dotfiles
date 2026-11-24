@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Rosé Pine status line: model · effort · dir · git branch · context used
+# Rosé Pine status line: dir · git branch (pure-style) · model · effort · context used
 in=$(cat)
 q() { jq -r "$1 // empty" <<<"$in"; }
 
@@ -13,10 +13,19 @@ dir=$(q '.workspace.current_dir // .cwd')
 branch=$(git -C "$dir" branch --show-current 2>/dev/null)
 ctx=$(q '.context_window.used_percentage')
 
-out="${rose}${model}${r}"
+dirty="" ab=""
+if [ -n "$branch" ]; then
+  [ -n "$(git --no-optional-locks -C "$dir" status --porcelain 2>/dev/null | head -n1)" ] && dirty="*"
+  read -r behind ahead < <(git --no-optional-locks -C "$dir" rev-list --left-right --count '@{upstream}...HEAD' 2>/dev/null)
+  [ "${behind:-0}" -gt 0 ] && ab+="⇣"
+  [ "${ahead:-0}" -gt 0 ] && ab+="⇡"
+fi
+
+# Pure-style order: dir, git branch (dirty/ahead/behind), then Claude info
+out="${foam}${dir/#$HOME/\~}${r}"
+[ -n "$branch" ] && out+=" ${muted}${branch}${dirty}${r}${ab:+ ${foam}${ab}${r}}"
+out+=" ${muted}·${r} ${rose}${model}${r}"
 [ -n "$effort" ] && out+=" ${muted}·${r} ${iris}${effort}${r}"
-out+=" ${muted}·${r} ${foam}${dir/#$HOME/\~}${r}"
-[ -n "$branch" ] && out+=" ${muted}·${r} ${gold} ${branch}${r}"
 if [ -n "$ctx" ]; then
   c=$foam; [ "${ctx%.*}" -ge 60 ] && c=$gold; [ "${ctx%.*}" -ge 85 ] && c=$love
   out+=" ${muted}·${r} ${c}ctx ${ctx%.*}%${r}"
