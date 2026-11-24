@@ -13,5 +13,6 @@
   "markdown": {
     "mermaid": "streaming"
   },
-  "theme": "system"
+  "theme": "system",
+  "defaultThinkingLevel": "low"
 }
