@@ -17,7 +17,7 @@
         "backlight",
         "wireplumber",
         "bluetooth",
-        "network",
+        "custom/network",
         "battery"
     ],
 
@@ -59,14 +59,10 @@
         "format-icons": ["", "", "", "", ""]
     },
     
-    "network": {
-        "format-wifi": "",
-        "format-ethernet": "󰈀",
-        "format-linked": "󰈀",
-        "format-disconnected": "󰤮",
-        "tooltip-format-wifi": "SSID: {essid}\nSignal: {signalStrength}%\nIP: {ipaddr}",
-        "tooltip-format-ethernet": "Interface: {ifname}\nIP: {ipaddr}",
-        "tooltip-format-disconnected": "Disconnected",
+    "custom/network": {
+        "exec": "~/.config/waybar/scripts/network.sh",
+        "return-type": "json",
+        "restart-interval": 5,
         "on-click": "foot --app-id=floating -e nmtui"
     },
 

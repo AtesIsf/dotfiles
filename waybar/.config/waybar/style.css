@@ -34,7 +34,7 @@ window#waybar {
 #pulseaudio,
 #wireplumber,
 #bluetooth,
-#network,
+#custom-network,
 #tray,
 #mode,
 #power-profiles-daemon {
