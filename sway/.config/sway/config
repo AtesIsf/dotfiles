@@ -38,10 +38,12 @@ exec xrdb -merge ~/.Xresources
 # Locks screen before sleep/suspend. Inactivity timeouts disabled.
 #
 exec swayidle -w \
-          before-sleep 'swaylock -f -c 000000'
+          before-sleep 'swaylock -f'
 # To re-enable inactivity lock or display power-off in the future:
 #           timeout 300 'swaylock -f -c 000000' \
 #           timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+
+bindsym $mod+Escape exec swaylock -f
 
 ### Input configuration
 input "type:touchpad" {
