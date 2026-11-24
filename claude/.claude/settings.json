@@ -13,6 +13,7 @@
       "Bash(git rebase:*)"
     ]
   },
+  "model": "opus",
   "hooks": {
     "Stop": [
       {
@@ -35,12 +36,12 @@
       }
     ]
   },
-  "enabledPlugins": {
-    "clangd-lsp@claude-plugins-official": true
-  },
-  "theme": "custom:rose-pine",
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
-  }
+  },
+  "enabledPlugins": {
+    "clangd-lsp@claude-plugins-official": true
+  },
+  "theme": "custom:rose-pine"
 }

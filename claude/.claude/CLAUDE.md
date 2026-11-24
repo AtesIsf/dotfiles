@@ -1,5 +1,15 @@
 # Global Operating Rules
 
+Host system facts: @HOST-SYSTEM.md
+
+- **Public files**: `~/.claude` is backed up in a public dotfiles repo.
+  Never write private info (names, emails, hostnames, keys, tokens)
+  into any file under it.
+- **80 columns**: no line of code or config you write may exceed 80
+  columns (my Neovim `colorcolumn=80`).
+- **No self-installs**: never install anything yourself (pip, cargo,
+  npm, curl | sh, emerge, ...). Tell me the package to install instead.
+  Exception: downloading into `/tmp` is fine.
 - **Git Safety**: Never execute git commands that modify or publish repository history—including `git add`, `git commit`, `git push`, or modifying remote branches—unless the user has given explicit permission within the current session.
 - **Shell Operations**: Use Bash for things like `ls`, `rg`, `find`.
 - **Code Intelligence**: When an LSP tool is available for the file's language, use it (diagnostics, definition, references, hover, symbols) to check semantic correctness and type safety.
