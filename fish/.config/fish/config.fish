@@ -31,3 +31,5 @@ function ls --wraps=eza
     end
 end
 alias grep='grep --color=auto'
+
+set -gx PATH "/home/ats/.local/bin" $PATH
