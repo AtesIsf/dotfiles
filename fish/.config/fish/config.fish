@@ -10,6 +10,10 @@ fish_add_path ~/Scripts
 fish_add_path ~/.local/bin
 fish_add_path ~/.pi/agent/bin
 
+if not set -q DBUS_SESSION_BUS_ADDRESS
+    set -gx DBUS_SESSION_BUS_ADDRESS "unix:path=$XDG_RUNTIME_DIR/bus"
+end
+
 function ls --wraps=eza
     if command -q eza
         set -l args --color=always --icons=always --group-directories-first --git

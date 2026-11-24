@@ -7,5 +7,11 @@
   "packages": [
     "npm:@cortexkit/pi-antigravity-auth"
   ],
-  "lastChangelogVersion": "1.6.0"
+  "lastChangelogVersion": "1.6.0",
+  "enableSkillCommands": true,
+  "showHardwareCursor": false,
+  "markdown": {
+    "mermaid": "streaming"
+  },
+  "theme": "system"
 }

@@ -9,6 +9,13 @@
 - **Web Tools**:
   - Use fetch_web_page when the user provides a web URL (http:// or https://) or asks to inspect online documentation or code.
   - Use search_web when looking for online documentation, libraries, or solutions not available locally.
+- **Code Intelligence (`lsp`)**:
+  - Use `lsp` (`diagnostics`, `references`, `definition`, `hover`, `symbols`, `rename`) when appropriate on supported programming language files to ensure semantic correctness and type safety.
+- **Interactive Debugging (`debug`)**:
+  - When diagnosing crashes, segfaults, hanging processes, or subtle state bugs in compiled binaries, prefer using the `debug` tool (launch, breakpoints, stack inspection, evaluation) over speculative print statements or guesses.
+- **Language Server & Debug Adapter Installation Policy (Strict)**:
+  - Language servers and debug adapters are managed centrally via Neovim/Mason.
+  - When an LSP server or debug adapter is missing, do NOT attempt to install packages via bash, package managers, pip, cargo, or npm. Politely instruct the user to open Neovim, run `:MasonInstall <package>`, and report back when finished.
 - **Communication Style**:
   - Be concise in your responses.
   - Show file paths clearly when working with files.
